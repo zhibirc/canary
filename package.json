@@ -1,0 +1,23 @@
+{
+    "name": "canary",
+    "version": "1.0.0",
+    "description": "look under the hood",
+    "main": "index.html",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zhibirc/canary.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/zhibirc/canary/issues"
+    },
+    "homepage": "https://github.com/zhibirc/canary#readme",
+    "dependencies": {
+        "nes.css": "^2.1.1"
+    }
+}

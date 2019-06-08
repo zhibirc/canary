@@ -1,13 +1,14 @@
 'use strict';
 
 const
-    fs   = require('fs'),
-    data = fs.readFileSync('./data.md', 'utf-8');
+    fs         = require('fs'),
+    readFile   = path => fs.readFileSync(path, 'utf-8'),
+    sourceData = readFile('./data.md');
 
 let cssString;
 
 if ( fs.existsSync('./node_modules/nes.css/css/nes.min.css') ) {
-    cssString = fs.readFileSync('./node_modules/nes.css/css/nes.min.css', 'utf-8');
+    cssString = readFile('./node_modules/nes.css/css/nes.min.css');
 } else {
     throw new Error('CSS source file doesn\'t exists at the "./node_modules/nes.css/css/nes.min.css"!');
 }
@@ -21,27 +22,12 @@ if ( fs.existsSync('./node_modules/nes.css/css/nes.min.css') ) {
  */
 function buildHTMLString ( contentItems ) {
     const
-        header = '<!DOCTYPE html> \
-                  <html lang="en"> \
-                      <head> \
-                          <meta charset="UTF-8"> \
-                          <title>Canary</title> \
-                          <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">' + cssString +
-                     '</head> \
-                      <body> \
-                          <div class="nes-container is-rounded is-centered"> \
-                              <div class="nes-table-responsive"> \
-                                  <table class="nes-table is-bordered is-centered is-dark"> \
-                                      <thead> \
-                                          <tr> \
-                                              <th>Service description</th> \
-                                              <th>Actions</th> \
-                                          </tr> \
-                                      </thead> \
-                                      <tbody>',
-        footer = '</tbody></table></div></div></body></html>';
+        header = readFile('./templates/header.tpl'),
+        footer = readFile('./templates/footer.tpl');
 
     let body = '';
+
+    header = header.replace('{css}', cssString);
 
     contentItems.forEach(item => {
         body += `<tr><td>${item.description}</td><td><a href="${item.uri}" target="_blank" class="nes-btn is-success">Get it!</a></td></tr>`;

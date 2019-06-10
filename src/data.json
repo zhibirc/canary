@@ -1,0 +1,54 @@
+[
+    {
+        "uri": "https://www.tineye.com/",
+        "description": "Reverse image search. Search by image and find where that image appears online"
+    },
+    {
+        "uri": "https://www.google.com.ua/imghp",
+        "description": "Google images search"
+    },
+    {
+        "uri": "http://exif.regex.info/exif.cgi",
+        "description": "Jeffrey's Image Metadata Viewer"
+    },
+    {
+        "uri": "https://fotoforensics.com/",
+        "description": "Research tool for advancing digital forensics as for images"
+    },
+    {
+        "uri": "http://multimedia3.iti.gr/video_fragmentation/service/start.html",
+        "description": "On-line service for video fragmentation and reverse image search"
+    },
+    {
+        "uri": "http://multimedia2.iti.gr/onlinevideoanalysis/service/start.html",
+        "description": "On-line service for video fragmentation and annotation"
+    },
+    {
+        "uri": "http://logos.iti.gr/logos/",
+        "description": "Image and video logo detector"
+    },
+    {
+        "uri": "https://domainbigdata.com/",
+        "description": "Search any domain, ip, registrant name or email"
+    },
+    {
+        "uri": "https://archive.fo/",
+        "description": "Search the archive for saved web page snapshots"
+    },
+    {
+        "uri": "https://archive.org/web/",
+        "description": "Find in the Internet Wayback Machine"
+    },
+    {
+        "uri": "https://inteltechniques.com/menu.html",
+        "description": "Hundreds of online search utilities (including Facebook Profile Search)"
+    },
+    {
+        "uri": "https://twitter.com/search-advanced",
+        "description": "Twitter advanced search"
+    },
+    {
+        "uri": "https://foller.me/",
+        "description": "Twitter Analytics"
+    }
+]

@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Canary</title>
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-        {css}
+        <style>{css}</style>
     </head>
     <body>
         <div class="nes-container is-rounded is-centered">

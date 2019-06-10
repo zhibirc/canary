@@ -16,7 +16,8 @@
         "url": "https://github.com/zhibirc/canary/issues"
     },
     "homepage": "https://github.com/zhibirc/canary#readme",
-    "dependencies": {
+    "devDependencies": {
+        "html-minifier": "^4.0.0",
         "nes.css": "^2.1.1"
     }
 }

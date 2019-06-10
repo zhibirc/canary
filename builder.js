@@ -1,9 +1,29 @@
 'use strict';
 
 const
-    fs         = require('fs'),
-    readFile   = path => fs.readFileSync(path, 'utf-8'),
-    sourceData = readFile('./data.md');
+    fs           = require('fs'),
+    htmlMinifier = require('html-minifier'),
+    readFile     = path => fs.readFileSync(path, 'utf-8'),
+    sourceData   = require('./src/data'),
+    // TODO: research on options
+    htmlMinifierOptions = {
+        removeComments:                 true,
+        removeCommentsFromCDATA:        true,
+        removeCDATASectionsFromCDATA:   true,
+        collapseWhitespace:             true,
+        collapseBooleanAttributes:      true,
+        removeAttributeQuotes:          true,
+        removeRedundantAttributes:      true,
+        useShortDoctype:                true,
+        removeEmptyAttributes:          true,
+        removeEmptyElements:            true,
+        removeOptionalTags:             true,
+        removeScriptTypeAttributes:     true,
+        removeStyleLinkTypeAttributes:  true,
+
+        minifyJS:                       true,
+        minifyCSS:                      true
+    };
 
 let cssString;
 
@@ -15,23 +35,28 @@ if ( fs.existsSync('./node_modules/nes.css/css/nes.min.css') ) {
 
 
 /**
+ * Build HTML destination file from templates and other resources.
  *
- * @param {Array} content - content for insertion in a result HTML structure
+ * @param {Array} contentItems - content for insertion in a result HTML structure
  *
  * @return {string} result HTML string
  */
+// TODO: rework -- add flexibility, templates map as a parameter
 function buildHTMLString ( contentItems ) {
     const
-        header = readFile('./templates/header.tpl'),
-        footer = readFile('./templates/footer.tpl');
+        header = readFile('./src/html.templates/header.tpl'),
+        footer = readFile('./src/html.templates/footer.tpl');
 
     let body = '';
 
-    header = header.replace('{css}', cssString);
-
     contentItems.forEach(item => {
+        // TODO: add favicons to descriptions (by CURL, in separate method)
         body += `<tr><td>${item.description}</td><td><a href="${item.uri}" target="_blank" class="nes-btn is-success">Get it!</a></td></tr>`;
     });
 
-    return header + body + footer;
+    return header.replace('{css}', cssString) + body + footer;
 }
+
+
+// TODO: possibly rework -- call chain is too long
+fs.writeFileSync('index.html', htmlMinifier.minify(buildHTMLString(sourceData), htmlMinifierOptions));

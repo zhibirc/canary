@@ -3,9 +3,9 @@
 const
     fs           = require('fs'),
     htmlMinifier = require('html-minifier'),
-    readFile     = path => fs.readFileSync(path, 'utf-8'),
     sourceData   = require('./src/data'),
-    // TODO: research on options
+    readFile     = path => fs.readFileSync(path, 'utf-8'),
+    // TODO: research on options -- https://www.npmjs.com/package/html-minifier
     htmlMinifierOptions = {
         removeComments:                 true,
         removeCommentsFromCDATA:        true,
@@ -58,5 +58,5 @@ function buildHTMLString ( contentItems ) {
 }
 
 
-// TODO: possibly rework -- call chain is too long
+// TODO: possibly rework -- call chain is tooooo long
 fs.writeFileSync('index.html', htmlMinifier.minify(buildHTMLString(sourceData), htmlMinifierOptions));

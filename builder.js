@@ -27,10 +27,10 @@ const
 
 let cssString;
 
-if ( fs.existsSync('./node_modules/nes.css/css/nes.min.css') ) {
-    cssString = readFile('./node_modules/nes.css/css/nes.min.css');
+if ( fs.existsSync('./node_modules/hack/dist/hack.css') ) {
+    cssString = readFile('./node_modules/hack/dist/hack.css');
 } else {
-    throw new Error('CSS source file doesn\'t exists at the "./node_modules/nes.css/css/nes.min.css"!');
+    throw new Error('CSS source file doesn\'t exists at the "./node_modules/hack/dist/hack.css"!');
 }
 
 
@@ -49,9 +49,10 @@ function buildHTMLString ( contentItems ) {
 
     let body = '';
 
-    contentItems.forEach(item => {
-        // TODO: add favicons to descriptions (by CURL, in separate method)
-        body += `<tr><td>${item.description}</td><td><a href="${item.uri}" target="_blank" class="nes-btn is-success">Get it!</a></td></tr>`;
+    contentItems.forEach((item, index) => {
+        const faviconPath = item.uri.replace(/^(https?:\/\/[^/]+).*$/, '$1/favicon.ico');
+
+        body += `<tr><td>${index}</td><td><img src="${faviconPath}"></td><td>${item.description}</td><td><a href="${item.uri}" target="_blank">Get it!</a></td></tr>`;
     });
 
     return header.replace('{css}', cssString) + body + footer;
